@@ -1,0 +1,11 @@
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\bin\WindowsGL\Debug\spring-hack.exe
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\bin\WindowsGL\Debug\spring-hack.pdb
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\obj\x86\Debug\spring-hack.csprojResolveAssemblyReference.cache
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\obj\x86\Debug\spring-hack.exe
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\obj\x86\Debug\spring-hack.pdb
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\bin\WindowsGL\Debug\Content\rect.png
+C:\Users\Tanat\Desktop\spring-hack\spring-hack\spring-hack\bin\WindowsGL\Debug\Content\Arial_14.xnb
+C:\Users\Tanat\Desktop\2d-physics\2d-physics\spring-hack\obj\x86\Debug\spring-hack.exe
+C:\Users\Tanat\Desktop\2d-physics\2d-physics\spring-hack\obj\x86\Debug\spring-hack.pdb
