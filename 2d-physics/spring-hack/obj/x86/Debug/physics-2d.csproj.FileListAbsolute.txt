@@ -7,3 +7,12 @@ C:\Users\Tanat\Desktop\2d-physics\2d-physics\spring-hack\bin\WindowsGL\Debug\Ope
 C:\Users\Tanat\Desktop\2d-physics\2d-physics\spring-hack\obj\x86\Debug\physics-2d.csprojResolveAssemblyReference.cache
 C:\Users\Tanat\Desktop\2d-physics\2d-physics\spring-hack\obj\x86\Debug\physics-2d.exe
 C:\Users\Tanat\Desktop\2d-physics\2d-physics\spring-hack\obj\x86\Debug\physics-2d.pdb
+Z:\2dphysics\2d-physics\spring-hack\bin\WindowsGL\Debug\Content\rect.png
+Z:\2dphysics\2d-physics\spring-hack\bin\WindowsGL\Debug\Content\Arial_14.xnb
+Z:\2dphysics\2d-physics\spring-hack\bin\WindowsGL\Debug\physics-2d.exe
+Z:\2dphysics\2d-physics\spring-hack\bin\WindowsGL\Debug\physics-2d.pdb
+Z:\2dphysics\2d-physics\spring-hack\bin\WindowsGL\Debug\MonoGame.Framework.dll
+Z:\2dphysics\2d-physics\spring-hack\bin\WindowsGL\Debug\OpenTK.dll
+Z:\2dphysics\2d-physics\spring-hack\obj\x86\Debug\physics-2d.exe
+Z:\2dphysics\2d-physics\spring-hack\obj\x86\Debug\physics-2d.pdb
+Z:\2dphysics\2d-physics\spring-hack\obj\x86\Debug\physics-2d.csprojResolveAssemblyReference.cache
