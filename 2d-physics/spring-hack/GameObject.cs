@@ -38,7 +38,6 @@ namespace physics2D
         protected Vector2 prevAcc;
         protected float rotation;
         protected Vector2 force;
-        protected Vector2 center;
         #endregion
 
         #region constructor
@@ -54,7 +53,6 @@ namespace physics2D
             velocity = new Vector2(0, 0);
             acceleration = new Vector2(0, 0);
             rotation = 0f;
-            center = new Vector2(rectangle.X + width / 2, rectangle.Y + height / 2);
         }
 
         public GameObject(Rectangle rectangle, Vector2 initialVelocity)
@@ -68,7 +66,6 @@ namespace physics2D
             velocity = initialVelocity;
             acceleration = new Vector2(0, 0);
             rotation = 0f;
-            center = new Vector2(rectangle.X + width / 2, rectangle.Y + height / 2);
         }
 
         #endregion
@@ -76,7 +73,8 @@ namespace physics2D
         #region properties
         public Vector2 Center
         {
-            get { return center; }
+            get { return new Vector2(X + width / 2, Y + height / 2); }
+
         }
 
         /// <summary>
@@ -239,8 +237,6 @@ namespace physics2D
 
             if (X < obj.Max.X && Max.X > obj.X && Y < obj.Max.Y && Max.Y > obj.Y)
             {
-                if (!(obj is Floor))
-                    Console.WriteLine("Collided!" + X);
                 return true;
 
             }
@@ -275,7 +271,12 @@ namespace physics2D
             }
 
             normalVector = new Vector2(-normalVector.Y, normalVector.X);
-            normalVector = normalVector / (normalVector.Length());
+            float magnitude = normalVector.Length();
+
+
+            normalVector.X = (float)Math.Round(normalVector.X / magnitude);
+            normalVector.Y = (float)Math.Round(normalVector.Y / magnitude);
+
 
             return normalVector;
         }

@@ -66,13 +66,13 @@ namespace physics2D
             }
             else if (input.KeyPressed(Keys.S))
             {
-                iniVelo.Y -= random.Next(160);
+                iniVelo.Y += random.Next(160);
                 AddObj(new GameObject(new Rectangle(input.MouseState.X, input.MouseState.Y, 64, 64),
                      iniVelo));
             }
             else if (input.KeyPressed(Keys.W))
             {
-                iniVelo.Y += random.Next(160);
+                iniVelo.Y -= random.Next(160);
                 AddObj(new GameObject(new Rectangle(input.MouseState.X, input.MouseState.Y, 64, 64),
                     iniVelo));
             }
@@ -106,16 +106,13 @@ namespace physics2D
             for(int i = 0; i < objects.Count; i++)
             {
                 objects[i].Force = Vector2.Zero;
-                objects[i].AddForce(new Vector2(0, objects[i].Mass * GRAVITY));
+                //objects[i].AddForce(new Vector2(0, objects[i].Mass * GRAVITY));
+                //Console.WriteLine("force is " +objects[i].Mass * GRAVITY);
 
-
-                int j = i + 1;
-                while (j < objects.Count)
+                for(int j = 0; j < objects.Count; j++)
                 {
-                    if (objects[i].CheckCollision(objects[j]))
+                    if (objects[i].CheckCollision(objects[j]) && i != j)
                         ResolveCollision(objects[i], objects[j], deltaTime);
-
-                    j++;
                 }
 
                 if (objects[i].CheckCollision(floors[0]))
@@ -169,13 +166,13 @@ namespace physics2D
             float ratio2 = obj2.Mass / massTotal;
 
             Vector2 relativeVelocity = obj1.Velocity - obj2.Velocity;
-            Direction direction = GetCollisionDirection(obj1, obj2, relativeVelocity);
+            Direction direction = GetCollisionDirection(obj1, obj2);
             Vector2 normal = obj1.GetNormalUnitVector(direction);
             float normalVelocity = Vector2.Dot(relativeVelocity, normal);
 
            
 
-            float e = Math.Min(obj1.Restitution, obj2.Restitution);
+            float e = 1;
 
             float inverseMass1 = 1.0f / obj1.Mass;
             float inverseMass2 = 1.0f / obj2.Mass;
@@ -224,17 +221,13 @@ namespace physics2D
         private void ResolveCollision(GameObject obj1, Floor obj2, double deltaTime)
         {
             Vector2 relativeVelocity = obj1.Velocity - obj2.Velocity;
-            Direction direction = GetCollisionDirection(obj1, obj2, relativeVelocity);
+            Direction direction = GetCollisionDirection(obj1, obj2);
             Vector2 normal = obj1.GetNormalUnitVector(direction);
             float normalVelocity = Vector2.Dot(relativeVelocity, normal);
 
-            float e = Math.Min(obj1.Restitution, obj2.Restitution);
-
-            float inverseMass1 = 1.0f / obj1.Mass;
-            float inverseMass2 = 1.0f / obj2.Mass;
-
+            float e = 1;
             float j = -(1 + e) * normalVelocity;
-            j = j / (inverseMass1 + inverseMass2);
+            j = j * obj1.Mass;
 
             Vector2 impulse = j * normal;
 
@@ -242,7 +235,7 @@ namespace physics2D
             if (direction == Direction.top)
             {
                 obj1.Y = obj2.Y - obj1.Height;
-               // obj1.Velocity = new Vector2(obj1.Velocity.X, 0);
+                //obj1.Velocity = new Vector2(obj1.Velocity.X, 0);
             }
             else if (direction == Direction.left)
             {
@@ -253,7 +246,7 @@ namespace physics2D
             else if (direction == Direction.right)
             {
                 obj1.X = obj2.Max.X;
-               // obj1.Velocity = new Vector2(0, obj1.Velocity.Y);
+                //obj1.Velocity = new Vector2(0, obj1.Velocity.Y);
 
             }
             else if (direction == Direction.bottom)
@@ -268,12 +261,32 @@ namespace physics2D
             Console.WriteLine("Added force of " + new Vector2(impulse.X / (float)deltaTime, impulse.Y / (float)deltaTime).ToString());
             */
 
+            Console.WriteLine("impuse was: " + impulse.X/(float)deltaTime + ", " + impulse.Y / (float)deltaTime);
             obj1.AddForce(new Vector2(impulse.X / (float)deltaTime, impulse.Y / (float)deltaTime));
         }
 
 
-        private Direction GetCollisionDirection(GameObject obj1, GameObject obj2, Vector2 relativeVelocity)
+        private Direction GetCollisionDirection(GameObject obj1, GameObject obj2)
         {
+            float wy = (obj1.Width + obj2.Width) * (obj1.Center.Y - obj2.Center.Y);
+            float hx = (obj1.Height + obj2.Height) * (obj1.Center.X - obj2.Center.X);
+
+            if (wy >= hx)
+            {
+                if (wy > -hx)
+                    return Direction.bottom;
+                else return Direction.left;
+            }
+
+            else
+            {
+                if (wy >= -hx)
+                    return Direction.right;
+                else return Direction.top;
+            }
+
+
+
             //too slow won't get triggered
             /*
             //checks if the thing moves in a straight line
@@ -294,6 +307,7 @@ namespace physics2D
             */
 
             //Vector2 difference = obj1. Position - obj1.PrevPos;
+            /*
 
             if (relativeVelocity.X < 0 && relativeVelocity.Y > 0) //obj1 is traveling to the left && down
             {
@@ -347,6 +361,7 @@ namespace physics2D
 
 
             //returns obj1's Direction
+            */
         }
 
 
