@@ -94,19 +94,14 @@ namespace physics2D
             Console.WriteLine("The right normal unit vector of the floor is: " + floors[0].getNormalUnitVector(Direction.right).ToString());
             */
 
-            //cameraNull.UpdatePos(deltaTime);
-
-
             //UPDATE INPUT AND CAMERA
             input.Update();            
-            //camera.Update(cameraNull);
-            
 
             //ADD FORCE
             for(int i = 0; i < objects.Count; i++)
             {
                 objects[i].Force = Vector2.Zero;
-                //objects[i].AddForce(new Vector2(0, objects[i].Mass * GRAVITY));
+                objects[i].AddForce(new Vector2(0, objects[i].Mass * GRAVITY));
                 //Console.WriteLine("force is " +objects[i].Mass * GRAVITY);
 
                 for(int j = 0; j < objects.Count; j++)
@@ -172,7 +167,7 @@ namespace physics2D
 
            
 
-            float e = 1;
+            float e = 1f;
 
             float inverseMass1 = 1.0f / obj1.Mass;
             float inverseMass2 = 1.0f / obj2.Mass;
@@ -225,7 +220,7 @@ namespace physics2D
             Vector2 normal = obj1.GetNormalUnitVector(direction);
             float normalVelocity = Vector2.Dot(relativeVelocity, normal);
 
-            float e = 1;
+            float e = 1f;
             float j = -(1 + e) * normalVelocity;
             j = j * obj1.Mass;
 
@@ -285,6 +280,7 @@ namespace physics2D
                 else return Direction.top;
             }
 
+            #region i don't need this
 
 
             //too slow won't get triggered
@@ -362,32 +358,8 @@ namespace physics2D
 
             //returns obj1's Direction
             */
+            #endregion
         }
 
-
-        /*
-        private void MoveCamera(InputManager input, GameObject cameraCenter)
-        {
-            if (input.KeysDown(Keys.A, Keys.Left) && input.KeysDown(Keys.D, Keys.Right))
-            {
-                cameraCenter.AddForce(new Vector2(-400, 0));
-            }
-
-            if (input.KeysDown(Keys.D, Keys.Right) && input.KeysDown(Keys.A, Keys.Left))
-            {
-                cameraCenter.AddForce(new Vector2(400, 0));
-            }
-
-            if (input.KeysDown(Keys.W, Keys.Up) && input.KeysDown(Keys.S, Keys.Down))
-            {
-                cameraCenter.AddForce(new Vector2(0, -400));
-            }
-
-            if (input.KeysDown(Keys.S, Keys.Down) && input.KeysDown(Keys.W, Keys.Up))
-            {
-                cameraCenter.AddForce(new Vector2(0, 400));
-            }
-        }
-        */
     }
 }
